@@ -3,7 +3,6 @@
 @section('title', 'create trainer')
 
 @section('content')
-<div class="container">
     <form class="form-group" method="POST" action="/trainers">
         @csrf
         <div class="form-group">
@@ -16,5 +15,4 @@
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
-</div>
 @endsection

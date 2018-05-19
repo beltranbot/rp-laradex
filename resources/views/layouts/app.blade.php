@@ -8,6 +8,11 @@
     <title>LaraDex - @yield('title')</title>
 </head>
 <body>
-    @yield('content')    
+    <div class="nav navbar navbar-dark bg-primary">
+        <a href="#" class="navbar-brand">LaraDex</a>
+    </div>
+    <div class="container">
+        @yield('content')
+    </div>
 </body>
 </html>
