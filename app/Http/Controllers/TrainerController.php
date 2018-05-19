@@ -3,6 +3,7 @@
 namespace laradex\Http\Controllers;
 
 use Illuminate\Http\Request;
+use laradex\Trainer;
 
 class TrainerController extends Controller
 {
