@@ -4,6 +4,7 @@ namespace laradex\Http\Controllers;
 
 use Illuminate\Http\Request;
 use laradex\Trainer;
+use Storage;
 
 class TrainerController extends Controller
 {
@@ -38,6 +39,8 @@ class TrainerController extends Controller
     {
         $trainer = new Trainer();
         $trainer->name = $request->name;
+        $trainer->avatar = ($request->hasFile('avatar')) ?
+            $request->file('avatar')->store('avatars', 'public') : null;
         $trainer->save();
         return 'Saved';
     }
