@@ -5,10 +5,9 @@
     @foreach ($trainers as $trainer)
         <div class="col-sm">
             <div class="card" style="width: 18rem; margin-top: 70px">
-            {{-- <img class="card-img-top" src="..." alt="Card image cap"> --}}
                 <div class="card-body text-center">
                     <img
-                    style="height: 100px; width: 100px; background-color: #EFEFEF; mx-auto; display-block; margin: 20px"
+                        style="height: 100px; width: 100px; background-color: #EFEFEF; mx-auto; display-block; margin: 20px"
                         class="card-img-top rounded-circle"
                         src="{{Storage::url($trainer->avatar)}}" alt="">
                     <h5 class="card-title">{{$trainer->name}}</h5>
@@ -16,7 +15,7 @@
                         Some quick example text to build on the card title and
                         make up the bulk of the card's content.
                     </p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a href="{{'/trainers/' . $trainer->id}}" class="btn btn-primary">Ver mas...</a>
                 </div>
             </div>
         </div>
