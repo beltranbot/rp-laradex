@@ -41,6 +41,11 @@ class TrainerController extends Controller
         $trainer->name = $request->name;
         $trainer->avatar = ($request->hasFile('avatar')) ?
             $request->file('avatar')->store('avatars', 'public') : null;
+        $slug = explode(' ', $request->name);
+        foreach ($slug as $key => $value) {
+            $slug[$key] = strtolower($value);
+        }
+        $trainer->slug = implode('-', $slug);
         $trainer->save();
         return 'Saved';
     }
@@ -51,8 +56,9 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Trainer $trainer)
+    public function show($slug)
     {
+        $trainer = Trainer::where('slug', $slug)->firstOrFail();
         return view('trainers.show', compact('trainer'));
     }
 
