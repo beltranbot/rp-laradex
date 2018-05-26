@@ -41,11 +41,17 @@ class TrainerController extends Controller
         $trainer->name = $request->name;
         $trainer->avatar = ($request->hasFile('avatar')) ?
             $request->file('avatar')->store('avatars', 'public') : null;
-        $slug = explode(' ', $request->name);
-        foreach ($slug as $key => $value) {
-            $slug[$key] = strtolower($value);
+
+        $slug = (isset($request->slug)) ?
+            $request->slug : explode(' ', $request->name);
+        if (is_array($slug)) {
+            foreach ($slug as $key => $value) {
+                $slug[$key] = strtolower($value);
+            }
+            $slug = implode('-', $slug);
         }
-        $trainer->slug = implode('-', $slug);
+        $trainer->slug = $slug;
+
         $trainer->save();
         return 'Saved';
     }
@@ -68,9 +74,9 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Trainer $trainer)
     {
-        //
+        return view('trainers.edit', compact('trainer'));
     }
 
     /**
@@ -80,9 +86,18 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Trainer $trainer)
     {
-        //
+        $trainer->name = $request->name;
+        $trainer->slug = $request->slug;
+        if ($request->hasFile('avatar')) {
+            $trainer->avatar =
+                $request->file('avatar')->store('avatars', 'public');
+        }
+        $trainer->save();
+        return 'Updated';
+
+
     }
 
     /**

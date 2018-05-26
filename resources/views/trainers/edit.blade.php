@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'create trainer')
+@section('title', 'edit trainer')
 
 @section('content')
-    {!!Form::open([
-        'route' => 'trainers.store',
-        'method' => 'post',
-        'files' => true
-    ])!!}
+    {!!Form::model(
+        $trainer,
+        [
+            'route' => ['trainers.update', $trainer],
+            'method' => 'put',
+            'files' => true
+        ]
+    )!!}
         <div class="form-group">
             {!!Form::label('name', 'Nombre') !!}
             {!!Form::text('name', null, ['class' => 'form-control'])!!}
@@ -20,6 +23,6 @@
             {!!Form::label('avtar', 'Avatar') !!}
             {!!Form::file('avatar')!!}
         </div>
-        {!!Form::submit('Guardar', ['class' => 'btn btn-primary'])!!}
+        {!!Form::submit('Actualizar', ['class' => 'btn btn-primary'])!!}
     {!!Form::close()!!}
 @endsection
