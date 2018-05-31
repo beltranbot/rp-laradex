@@ -3,6 +3,7 @@
 namespace laradex\Http\Controllers;
 
 use Illuminate\Http\Request;
+use laradex\Http\Requests\StoreTrainerRequest;
 use laradex\Trainer;
 use Storage;
 
@@ -35,14 +36,8 @@ class TrainerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTrainerRequest $request)
     {
-        $validateData = $request->validate([
-            'name' => 'required|max:10',
-            'avatar' => 'required|image',
-            'slug' => 'required'
-        ]);
-
         $trainer = new Trainer();
         $trainer->name = $request->name;
         $trainer->avatar = ($request->hasFile('avatar')) ?
