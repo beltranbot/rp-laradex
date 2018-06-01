@@ -5,7 +5,7 @@ namespace laradex\Http\Controllers;
 use Illuminate\Http\Request;
 use laradex\Http\Requests\StoreTrainerRequest;
 use laradex\Trainer;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 
 class TrainerController extends Controller
 {
@@ -107,8 +107,11 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Trainer $trainer)
     {
-        //
+        $filepath = public_path().'/storage/'.$trainer->avatar;
+        \File::delete($filepath);
+        $trainer->delete();
+        return 'deleted ' . $filepath;
     }
 }
