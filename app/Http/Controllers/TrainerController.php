@@ -98,7 +98,9 @@ class TrainerController extends Controller
         }
         $trainer->save();
         // return 'Updated';
-        return redirect()->route('trainers.show', $trainer);
+        return redirect()
+                ->route('trainers.show', $trainer)
+                ->with('status', 'Trainer Updated!');
 
 
     }

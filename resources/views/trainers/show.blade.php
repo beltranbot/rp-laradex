@@ -3,6 +3,11 @@
 @section('title', 'trainer')
 
 @section('content')
+    @if(session('status'))
+        <div class="alert alert-success">
+            {{session('status')}}
+        </div>
+    @endif
     <div class="card-body text-center">
         <img
             style="height: 200px; width: 200px; background-color: #EFEFEF; mx-auto; display-block; margin: 20px"
