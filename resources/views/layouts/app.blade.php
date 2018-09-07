@@ -11,6 +11,10 @@
     <div class="nav navbar navbar-dark bg-primary">
         <a href="#" class="navbar-brand">LaraDex</a>
     </div>
+
+    @include('common.errors')
+    @include('common.session-message')
+
     <div class="container">
         @yield('content')
     </div>

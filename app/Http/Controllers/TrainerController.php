@@ -100,9 +100,7 @@ class TrainerController extends Controller
         // return 'Updated';
         return redirect()
                 ->route('trainers.show', $trainer)
-                ->with('status', 'Trainer Updated!');
-
-
+                ->with('message', 'Trainer Updated!');
     }
 
     /**
