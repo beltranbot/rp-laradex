@@ -28,6 +28,6 @@ class User extends Authenticatable
     ];
 
     public function roles () {
-        return $this->belongsToMay('App\Role');
+        return $this->belongsToMany('laradex\Role');
     }
 }
