@@ -19,3 +19,4 @@ Route::resource('trainers', 'TrainerController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('pokemon', 'PokemonController');
