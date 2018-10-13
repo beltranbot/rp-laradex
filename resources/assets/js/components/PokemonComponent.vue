@@ -1,5 +1,6 @@
 <template>
 	<div class="row">
+        <spinner v-show="loading"/>
 		<div class="col-sm" v-for="pokemon in pokemons" v-bind:key="pokemon.id">
 			<div class="card text-center" style="width: 18rem; margin-top: 70px;">
                 <img style="height: 100px; width: 100px; background-color: #EFEFEF; margin: 20px;" class="card-img-top rounded-circle mx-auto d-block" src="images/" alt="">
@@ -17,14 +18,18 @@
 export default {
     data() {
         return {
-            pokemons: []
+            pokemons: [],
+            loading: true
         };
     },
     async mounted() {
         try {
             let response = await axios.get('/pokemon')
             this.pokemons = response.data
+            this.loading = false
         } catch (error) {
+            this.loading = false
+            console.log('error', error)
             
         }
     }
