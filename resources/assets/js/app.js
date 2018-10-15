@@ -17,8 +17,10 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('pokemon-component', require('./components/PokemonComponent.vue'));
+Vue.component('add-pokemon-btn', require('./components/AddPokemonComponent.vue'));
+Vue.component('create-form-pokemon', require('./components/CreatePokemonComponent.vue'));
 Vue.component('spinner', require('./components/Spinner.vue'));
 
 const app = new Vue({
-    el: '#app'
+  el: '#app'
 });
