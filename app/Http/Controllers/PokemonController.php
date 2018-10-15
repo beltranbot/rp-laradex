@@ -10,8 +10,22 @@ class PokemonController extends Controller
         if ($request->ajax()) {
             return response()->json([
                 ['id' => 1, 'name' => 'Pikachu']
-            ]);
+            ], 200);
         }
         return view('pokemon.index');
+    }
+
+    public function store (Request $request) {
+        if ($request->ajax()) {
+            $pokemon = new Pokemon();
+            $pokemon->name = $request->name;
+            $pokemon->picture = $request->picture;
+
+            $pokemon->save();
+
+            return response()->json([
+                "message" => "Pokemon creado correctamente!"
+            ], 200);
+        }
     }
 }
