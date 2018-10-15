@@ -3,14 +3,14 @@
 namespace laradex\Http\Controllers;
 
 use Illuminate\Http\Request;
+use laradex\Pokemon;
 
 class PokemonController extends Controller
 {
     public function index (Request $request) {
         if ($request->ajax()) {
-            return response()->json([
-                ['id' => 1, 'name' => 'Pikachu']
-            ], 200);
+            $pokemon = Pokemon::all();
+            return response()->json($pokemon, 200);
         }
         return view('pokemon.index');
     }
