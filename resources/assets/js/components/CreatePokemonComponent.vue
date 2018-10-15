@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import EventBus from '../event-bus'
 export default {    
     data ()     {
         return {
@@ -55,13 +56,16 @@ export default {
     methods: {
         savePokemon: async function () {
             try {                
-                let response = await axios.post('/pokemon', {
+                let { data } = await axios.post('/pokemon', {
                     name: this.name,
                     picture: this.picture,
                 })
-    
-                console.log(response)
+
                 $('#addPokemon').modal('hide')
+                EventBus.$emit(
+                    'pokemon-added',
+                    data.pokemon
+                )
             } catch (error) {
                 console.log('error', error)
                 

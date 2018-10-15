@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import EventBus from '../event-bus'
 export default {
     data() {
         return {
@@ -25,6 +26,11 @@ export default {
             loading: true
         };
     },
+    created () {
+        EventBus.$on('pokemon-added', data => {
+            this.pokemons.push(data)
+        })
+    }, 
     async mounted() {
         try {
             let response = await axios.get('/pokemon')
